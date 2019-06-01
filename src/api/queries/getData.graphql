@@ -1,0 +1,3 @@
+query getData($slow:Boolean, $base:String) {
+  getData(slow:$slow, base:$base) @client
+}
