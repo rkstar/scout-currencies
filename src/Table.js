@@ -7,17 +7,17 @@ import { Grid, Code, Rate } from './Table.styles';
 
 const GET_DATA = loader('./api/queries/getData.graphql');
 
-export default ({ slow }) => {
-  const { data, loading, error, refetch } = useQuery(GET_DATA, {
-    variables: { slow },
+export default ({ slow, showError }) => {
+  const { data, loading, refetch, error } = useQuery(GET_DATA, {
+    variables: { slow, error: showError },
   });
 
-  const onClick = base => () => refetch({ slow, base }); // setBase(code);
+  const onClick = base => () => refetch({ slow, error: showError, base });
 
   return loading ? (
     <Spinner />
   ) : error ? (
-    <Error>{error}</Error>
+    <Error>{error.message}</Error>
   ) : (
     <Grid>
       <Code>{data.getData.base}</Code>

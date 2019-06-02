@@ -7,7 +7,8 @@ const buildUrl = ({ slow, base }) => {
   return `${prefix}${url}${params}`;
 };
 
-export const getData = async (__, params) => {
+export const getData = async (__, { error, ...params }) => {
+  if (error) throw new Error('an error happened.');
   const response = await fetch(buildUrl(params));
   const data = await response.json();
   return data;

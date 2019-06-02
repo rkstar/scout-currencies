@@ -15,6 +15,9 @@ The base currency can be changed by clicking any of the currencies that are retu
 
 **NOTE:** currency switching _does not_ work in **slow** mode. This is a limitation of the third party api I used to simulate a slow api.
 
+## displaying errors
+Check the box at the top labeled **show error** to display an error instead of data.
+
 ------------------
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

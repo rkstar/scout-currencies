@@ -12,7 +12,9 @@ const App = styled.div`
 export default () => {
   const [requesting, setRequesting] = useState(false);
   const [slow, setSlowMode] = useState(false);
+  const [showError, setShowError] = useState(false);
   const updateSlowMode = e => setSlowMode(e.target.value === 'true');
+  const updateErrorMode = e => setShowError(e.target.checked);
 
   return (
     <App>
@@ -20,11 +22,15 @@ export default () => {
         <option value={false}>fast</option>
         <option value>slow</option>
       </select>
+      <label htmlFor="showError">
+        <input id="showError" type="checkbox" onChange={updateErrorMode} /> show
+        error
+      </label>
       <Main>
         {!requesting && (
           <Button onClick={() => setRequesting(true)}>load data</Button>
         )}
-        {requesting && <Table slow={slow} />}
+        {requesting && <Table {...{ slow, showError }} />}
       </Main>
     </App>
   );
