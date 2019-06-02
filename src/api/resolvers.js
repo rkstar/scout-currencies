@@ -1,4 +1,4 @@
-const buildUrl = ({ slow, base }) => {
+export const buildUrl = ({ slow, base } = {}) => {
   const prefix = slow
     ? 'http://slowwly.robertomurray.co.uk/delay/1800/url/'
     : '';
@@ -7,7 +7,7 @@ const buildUrl = ({ slow, base }) => {
   return `${prefix}${url}${params}`;
 };
 
-export const getData = async (__, { error, ...params }) => {
+export const getData = async (__, { error, ...params } = {}) => {
   if (error) throw new Error('an error happened.');
   const response = await fetch(buildUrl(params));
   const data = await response.json();
